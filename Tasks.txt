@@ -1,0 +1,286 @@
+
+Day1
+-)Create a calculator Using Window Forms
+------------------------------------------------------------------
+-)Different buttons for numbers and operators
+
+Day2
+-)Create an empty project in webforms
+-)embed theme in that project (you can take help from internet)
+------------------------------------------------------------------
+-)understand the concept of Master pages in webforms 
+------------------------------------------------------------------
+-)make all pages in app
+read the code if any is repeating then shift that code to master page 
+
+Day3
+webapi
+.net 4.8
+post action
+Swagger-Net install
+https://www.nuget.org/packages/Swagger-Net
+input UserId , Password
+calling method 
+verify by global variable 
+Use of rest API and method get post with swagger and postman
+
+Day4
+Same Day3 work but with SoapApi
+USing Soap UI
+Also calling the soap api from window form and get and validate credentiaals from there
+
+Day5
+from the existing project of restapi
+Using Rest API (post method) Upload document and save through it in the current project folder
+assign jwt token to post method 
+
+Day6 
+testing jwt authorization in postman
+authorization of file status details
+
+Day7
+Calling rest authorized API with proper functionality through window form
+
+Day8 
+Knowledge about Oauth2.0 , SignalR
+Using SignalR in map API track current location
+
+Day9
+Allowing multiple users to view list of online user 
+each can share and see each other location
+added from to location route with precise directions
+
+Day10
+Making Clone of whatsapp
+added signalr to broadcast messages to multiple users
+
+Day11
+add date and time stamp with the messages
+whatsapp style chat person message on left and mine message on right
+
+Day12
+Group chat features that allow on clicking groupchat to show me list of members and on selecting them generate a group of it allowing me to name the group
+
+Day13
+Clearing the code making it error free
+checking of all the functionality
+
+Day14
+Making Tables related whatsapp clone in database
+establish foreign and primary key relations between the tables
+
+Day15
+Connect my local Db with my Whatsapp Clone
+Fetch chat and messages from the db 
+and store new messages in the db with sender and receiver names 
+also file url with datetime are stored
+
+Day16
+Create login page that allows multiple user to login
+and open project on different browsers to chat through different users in group chat
+Frontend-->Webform,Send Button-->.Net core framework 8(API)
+Call API on send button attach SignalR API
+
+Day17
+getting started with Angular
+creating components in layout folder(header,footer)
+
+Day18
+making header footer and making pages like home, contact-us,about-us,news
+storing data from form present in contact-us page and showing it on table in news page by using session storage
+creating update and delete modal and perfrom respective action on the table
+
+Day19
+Creating drop down and calling one country in dropdown to show its respective cities in other dropdown 
+Put images in assets folder naming 1,2,3,4,5,... respectively and call them via loop and display them
+
+Day20
+Create a login page on angular and connect it with api and database
+
+Day21
+Coverting whatsapp clone to angular
+
+Day22 
+Handling api connectivity issues 
+
+Day23 
+Creaing new Apis rahter than using whatsapp clone api
+
+Day24
+Creatimg separate Api for everything
+
+Day25 
+Converting the file into binary 
+
+CREATE DATABASE AuthDemo;
+GO
+USE AuthDemo;
+
+CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY,
+    Username NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(100) NOT NULL
+);
+
+
+INSERT INTO Users (Username, Password)
+VALUES ('Sohail', 'pass123');
+INSERT INTO Users (Username, Password)
+VALUES ('user', 'pass');
+
+select * from Users
+
+drop table Users
+
+
+Use Whatsapp; 
+Go 
+
+CREATE TABLE Users ( 
+	UserId INT IDENTITY(1,1) PRIMARY KEY, 
+	UserName NVARCHAR(100) NOT NULL UNIQUE,
+	DisplayName NVARCHAR(100) NOT NULL, 
+	ProfileImageUrl NVARCHAR(500) NULL 
+); 
+ 
+INSERT INTO Users (UserName, DisplayName, ProfileImageUrl)
+VALUES ('You', 'You', 'https://png.pngtree.com/png-clipart/20190516/original/pngtree-whatsapp-icon-png-image_3584844.jpg');
+INSERT INTO Users (UserName, DisplayName, ProfileImageUrl) 
+VALUES ('Bob', 'Bob', 'https://icon2.cleanpng.com/20240328/oib/transparent-glasses-man-in-grey-hoodie-with-glasses6605742c05f420.64964225.webp'); 
+INSERT INTO Users (UserName, DisplayName, ProfileImageUrl) 
+VALUES ('Alice', 'Alice', 'https://static.vecteezy.com/system/resources/previews/004/439/690/non_2x/doodle-girl-character-drawing-vector.jpg'); 
+INSERT INTO Users (UserName, DisplayName, ProfileImageUrl) 
+VALUES ('Charlie', 'Charlie', 'https://img.freepik.com/free-vector/happy-cartoon-character-smiling_1308-171029.jpg'); 
+INSERT INTO Users (UserName, DisplayName, ProfileImageUrl) 
+VALUES ('John', 'John', 'https://www.shutterstock.com/image-vector/happy-young-people-design-vector-600nw-440727109.jpg'); 
+   
+CREATE TABLE Chats (
+	ChatId INT IDENTITY(1,1) PRIMARY KEY, 
+	ChatName NVARCHAR(100) NOT NULL, 
+	IsGroup BIT NOT NULL DEFAULT 0, 
+	LastMessage NVARCHAR(MAX) NULL, 
+	LastMessageDateTime DATETIME NULL, 
+	ChatImageUrl NVARCHAR(500) NULL 
+); 
+
+INSERT INTO Chats (ChatName, IsGroup, LastMessage, LastMessageDateTime, ChatImageUrl) 
+VALUES ('Bob', 0, 'Let’s catch up!', GETDATE(), 'https://icon2.cleanpng.com/20240328/oib/transparent-glasses-man-in-grey-hoodie-with-glasses6605742c05f420.64964225.webp'); 
+INSERT INTO Chats (ChatName, IsGroup, LastMessage, LastMessageDateTime, ChatImageUrl)
+ VALUES ('Alice', 0, 'Hey there!', GETDATE(), 'https://static.vecteezy.com/system/resources/previews/004/439/690/non_2x/doodle-girl-character-drawing-vector.jpg'); 
+INSERT INTO Chats (ChatName, IsGroup, LastMessage, LastMessageDateTime, ChatImageUrl) 
+VALUES ('Charlie', 0, 'See you soon!', GETDATE(), 'https://img.freepik.com/free-vector/happy-cartoon-character-smiling_1308-171029.jpg'); 
+INSERT INTO Chats (ChatName, IsGroup, LastMessage, LastMessageDateTime, ChatImageUrl) 
+VALUES ('John', 0, 'See u there!', GETDATE(), 'https://www.shutterstock.com/image-vector/happy-young-people-design-vector-600nw-440727109.jpg');
+	
+Create Table Messages( 
+	MessageId INT IDENTITY(1,1) PRIMARY KEY, 
+	ChatId INT NOT NULL, 
+	SenderUserId INT NOT NULL,
+	MessageText NVARCHAR(MAX) NULL, 
+	FileContent VARBINARY(MAX) NULL,
+    FileName NVARCHAR(255) NULL,
+    FileType NVARCHAR(50) NULL,
+	IsFile BIT NOT NULL DEFAULT 0, 
+	SentDateTime DATETIME NOT NULL DEFAULT GETDATE(), 
+	FOREIGN KEY (ChatId) REFERENCES Chats(ChatId) ON DELETE CASCADE, 
+	FOREIGN KEY (SenderUserId) REFERENCES Users(UserId) 
+);
+
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (1, 1, 'Hey Bob, how are you?', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (1, 2, 'I am good, thanks! Let’s catch up!', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (2, 1, 'Hi Alice!', 0); -- You to Alice 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (2, 3, 'Hey there! How have you been?', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile)
+VALUES (3, 1, 'What time are we meeting?', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile)
+VALUES (3, 4, 'Around 3 PM. See you soon!', 0);
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (4, 1, 'Are you coming to the event?', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile) 
+VALUES (4, 5, 'Yes, I am! See u there!', 0); 
+INSERT INTO Messages (ChatId, SenderUserId, MessageText, IsFile)
+VALUES (1, 1, 'Check out this image!', 0);
+			 
+Create procedure GetMessagesByChatId
+	@ChatId int 
+As 
+Begin 
+	SELECT 
+		M.MessageId, 
+		M.ChatId,
+		U.UserName AS SenderUserName, 
+		C.ChatName As ChatUserName,
+		M.MessageText, 
+		M.FileContent,
+		M.FileName,
+		M.FileType,
+		M.IsFile,
+		M.SentDateTime
+	FROM Messages M 
+	JOIN Users U ON M.SenderUserId = U.UserId 
+	Join Chats C on M.ChatId = C.ChatId
+	Where M.ChatId = @ChatId
+	ORDER BY M.SentDateTime; 
+End; 
+					 
+CREATE PROCEDURE GetMessageCountByChatId 
+	@ChatId INT, 
+	@MessageCount INT OUTPUT 
+AS
+BEGIN 
+	SELECT @MessageCount = COUNT(*) 
+	FROM Messages
+	WHERE ChatId = @ChatId; 
+END; 
+
+CREATE PROCEDURE GetAllMessages
+AS
+BEGIN
+    SELECT 
+        M.MessageId,
+        M.ChatId,
+        U.UserName AS SenderUserName,
+        C.ChatName AS ChatUserName,
+        M.MessageText,
+        M.FileContent,
+		M.FileName,
+		M.FileType,
+        M.IsFile,
+        M.SentDateTime
+    FROM Messages M
+    JOIN Users U ON M.SenderUserId = U.UserId
+    JOIN Chats C ON M.ChatId = C.ChatId
+    ORDER BY M.SentDateTime;
+END;
+
+Delete from Chats 
+where ChatId = 5 
+					   
+Update Messages Set FileUrl=Null
+where MessageId= 4; 
+						
+CREATE TABLE GroupMembers (
+	GroupMemberId INT IDENTITY(1,1) PRIMARY KEY, 
+	ChatId INT NOT NULL, UserId INT NOT NULL, 
+	FOREIGN KEY (ChatId) REFERENCES Chats(ChatId), 
+	FOREIGN KEY (UserId) REFERENCES Users(UserId) 
+); 
+
+Select * from Users
+
+Select * from Chats 
+
+Select * from Messages
+Exec GetAllMessages
+Exec GetMessagesByChatId @ChatId = 2 
+
+DECLARE @Count INT; 
+EXEC GetMessageCountByChatId @ChatId = 3, 
+@MessageCount = @Count OUTPUT; 
+PRINT @Count; 
+						   
+Select * from GroupMembers
